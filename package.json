@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "react": "^0.13.0",
-    "reflux": "^0.2.7"
+    "reflux": "^0.2.7",
+    "shortid": "^2.2.2"
   },
   "author": "Marcin Kumorek",
   "license": "ISC"

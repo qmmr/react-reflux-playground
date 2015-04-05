@@ -1,47 +1,9 @@
 import React from 'react'
 import Reflux from 'reflux'
 
-var TodoActions = Reflux.createActions([
-	'addItem',
-	'removeItem',
-	'toggleItem'
-])
-
-var todoListStore = Reflux.createStore({
-
-	listenables: TodoActions,
-
-	init() {
-		this.list = [
-			{ text: 'Buy milk' },
-			{ text: 'Wash the dishes' }
-		]
-	},
-
-	onAddItem(text) {
-		// console.log('Marcin :: onAddItem', text, this.list)
-
-		this.list.push({ text })
-		// console.log('Marcin :: push', this.list)
-
-		this.trigger({ tasks: this.list })
-	},
-
-	onRemoveItem(item) {
-		console.log('Marcin :: onRemoveItem', item)
-	},
-
-	onToggleItem(item) {
-		console.log('Marcin :: onToggleItem', item)
-	},
-
-	getInitialState() {
-		// this.list = []
-
-		return { tasks: this.list }
-	}
-
-})
+import TodoActions from './TodoActions'
+import todoListStore from './TodoListStore'
+import TodoItem from './TodoItem.jsx'
 
 export default React.createClass({
 
@@ -68,16 +30,7 @@ export default React.createClass({
 	getTodoItems() {
 		var { tasks } = this.state
 
-		return tasks.map((todo, idx) => {
-			return <li className='list-group-item' key={ idx }>
-				<div className='checkbox'>
-					<label>
-						<input type='checkbox' value='todoItem' />
-					</label>
-				</div>
-				{ todo.text }
-			</li>
-		})
+		return tasks.map((todo) => <TodoItem todo={ todo } />)
 	},
 
 	render() {
