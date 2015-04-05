@@ -36,13 +36,11 @@ export default React.createClass({
 	render() {
 		return (
 			<div className='row'>
-				<div className='jumbotron'>
+				<div className='col-sm-8 col-sm-offset-2'>
 					<div className='input-group'>
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
 						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus onKeyUp={ this.handleValueChange } className='form-control' />
 					</div>
-				</div>
-				<div className='col-sm-12'>
 					<h1>Todo list:</h1>
 					<ul className='list-group'>
 						{ this.getTodoItems() }

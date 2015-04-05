@@ -2,3 +2,11 @@
     float: left;
     margin: 0;
 }
+
+.btn-remove {
+    float: right;
+}
+
+.complete {
+    text-decoration: line-through;
+}
