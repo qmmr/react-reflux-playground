@@ -1,0 +1,21 @@
+{
+  "name": "react-reflux-playground",
+  "version": "0.0.1",
+  "description": "React.js & Reflux playground",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "babel-core": "^5.0.8",
+    "babel-loader": "^5.0.0",
+    "react-hot-loader": "^1.2.4",
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.8.0"
+  },
+  "dependencies": {
+    "react": "^0.13.0"
+  },
+  "author": "Marcin Kumorek",
+  "license": "ISC"
+}
