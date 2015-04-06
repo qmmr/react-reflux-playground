@@ -30,7 +30,7 @@ export default React.createClass({
 	getTodoItems() {
 		var { tasks } = this.state
 
-		return tasks.map((todo) => <TodoItem todo={ todo } />)
+		return tasks.map((todo) => <TodoItem key={ todo.id } todo={ todo } />)
 	},
 
 	render() {

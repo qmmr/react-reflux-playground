@@ -11,8 +11,11 @@ export default React.createClass({
 	},
 
 	removeItem(e) {
-		console.log('Marcin :: id', this.props.todo.id)
 		TodoActions.removeItem(this.props.todo.id)
+	},
+
+	toggleComplete(e) {
+		TodoActions.toggleCompleteItem(this.props.todo.id)
 	},
 
 	render() {
@@ -23,7 +26,7 @@ export default React.createClass({
 			<li className={ todoClasses } data-id={ todo.id } key={ todo.id }>
 				<div className='checkbox'>
 					<label>
-						<input type='checkbox' value='todoItem' />
+						<input type='checkbox' onChange={ this.toggleComplete } checked={ todo.complete } value='todoItem' />
 					</label>
 				</div>
 				{ todo.text }
