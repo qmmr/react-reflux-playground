@@ -15,22 +15,16 @@ export default Reflux.createStore({
 	},
 
 	onAddItem(text) {
-		// console.log('Marcin :: onAddItem', text, this.list)
-
 		this.list.push({ id: shortid.generate(), text, complete: false })
-		// console.log('Marcin :: push', this.list)
-
 		this.emitChange()
 	},
 
 	onRemoveItem(id) {
-		console.log('Marcin :: onRemoveItem', id)
 		this.list = this.list.filter((todo) => todo.id !== id)
 		this.emitChange()
 	},
 
 	onToggleCompleteItem(id) {
-		console.log('Marcin :: onToggleCompleteItem', id)
 		this.list = this.list.map(todo => {
 			if (todo.id === id) {
 				todo.complete = !todo.complete

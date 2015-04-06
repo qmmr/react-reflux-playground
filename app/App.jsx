@@ -4,6 +4,7 @@ import Reflux from 'reflux'
 import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
 import TodoItem from './TodoItem.jsx'
+import Footer from './Footer.jsx'
 
 export default React.createClass({
 
@@ -37,14 +38,21 @@ export default React.createClass({
 		return (
 			<div className='row'>
 				<div className='col-sm-8 col-sm-offset-2'>
-					<div className='input-group'>
+					<div className='todo-input-container input-group'>
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
 						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus onKeyUp={ this.handleValueChange } className='form-control' />
 					</div>
-					<h1>Todo list:</h1>
-					<ul className='list-group'>
-						{ this.getTodoItems() }
-					</ul>
+					<div className='panel panel-default'>
+						<div className="panel-heading">
+							<h3 className='panel-title'>Todo list:</h3>
+						</div>
+						<div className='panel-body'>
+							<ul className='todo-list list-group'>
+								{ this.getTodoItems() }
+							</ul>
+						</div>
+						<Footer todos={ this.state.tasks } />
+					</div>
 				</div>
 			</div>
 		)

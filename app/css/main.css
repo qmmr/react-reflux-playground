@@ -10,3 +10,11 @@
 .complete {
     text-decoration: line-through;
 }
+
+.todo-input-container {
+    margin: 1em auto;
+}
+
+.todo-list {
+    margin-bottom: 0;
+}
