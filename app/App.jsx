@@ -3,19 +3,16 @@ import Reflux from 'reflux'
 
 import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
+
 import TodoItem from './TodoItem.jsx'
 import Footer from './Footer.jsx'
 
+import Router from 'react-router'
+var RouteHandler = Router.RouteHandler
+
 export default React.createClass({
 
-	mixins: [
-		Reflux.connect(todoListStore)
-		// Reflux.listenTo(todoListStore, [ 'onAddItem' ])
-	],
-
-	onAddItem(todos) {
-		console.log('Marcin :: onAddItem', todos)
-	},
+	mixins: [ Reflux.connect(todoListStore) ],
 
 	handleValueChange(e) {
 		var text = e.target.value
@@ -42,17 +39,10 @@ export default React.createClass({
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
 						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus onKeyUp={ this.handleValueChange } className='form-control' />
 					</div>
-					<div className='panel panel-default'>
-						<div className="panel-heading">
-							<h3 className='panel-title'>Todo list:</h3>
-						</div>
-						<div className='panel-body'>
-							<ul className='todo-list list-group'>
-								{ this.getTodoItems() }
-							</ul>
-						</div>
-						<Footer todos={ this.state.tasks } />
-					</div>
+
+					<RouteHandler { ...this.state } />
+
+					<Footer { ...this.state } />
 				</div>
 			</div>
 		)

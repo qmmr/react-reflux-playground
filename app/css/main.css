@@ -18,3 +18,15 @@
 .todo-list {
     margin-bottom: 0;
 }
+
+.nav > li > a.active,
+.nav > li > a.active:hover,
+.nav > li > a.active:focus {
+    color: #ffffff;
+    background-color: #158cba;
+}
+
+.nav > li > a.active > .badge {
+  color: #158cba;
+  background-color: #ffffff;
+}

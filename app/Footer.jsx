@@ -1,4 +1,7 @@
 import React from 'react'
+import Router from 'react-router'
+
+var Link = Router.Link
 
 export default React.createClass({
 
@@ -6,16 +9,16 @@ export default React.createClass({
 
 	getDefaultProps() {
 		return {
-			todos: []
+			tasks: []
 		}
 	},
 
 	getItemsCount() {
-		return this.props.todos.length
+		return this.props.tasks.length
 	},
 
 	getCompletedCount() {
-		return this.props.todos.filter(item => item.complete === true).length
+		return this.props.tasks.filter(item => item.complete === true).length
 	},
 
 	getActiveCount() {
@@ -26,14 +29,14 @@ export default React.createClass({
 		return (
 			<div className='panel-footer'>
 				<ul className='nav nav-pills'>
-					<li className='active'>
-						<a href='#all'>all:&nbsp;<span className='badge'>{ this.getItemsCount() }</span></a>
+					<li className=''>
+						<Link activeClassName='active' to='all'>All:&nbsp;<span className='badge'>{ this.getItemsCount() }</span></Link>
 					</li>
 					<li className=''>
-						<a href='#completed'>completed:&nbsp;<span className='badge'>{ this.getCompletedCount() }</span></a>
+						<Link activeClassName='active' to='completed'>Completed:&nbsp;<span className='badge'>{ this.getCompletedCount() }</span></Link>
 					</li>
 					<li className=''>
-						<a href='#active'>active:&nbsp;<span className='badge'>{ this.getActiveCount() }</span></a>
+						<Link activeClassName='active' to='active'>Active:&nbsp;<span className='badge'>{ this.getActiveCount() }</span></Link>
 					</li>
 				</ul>
 			</div>
