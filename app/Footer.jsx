@@ -18,6 +18,10 @@ export default React.createClass({
 		return this.props.todos.filter(item => item.complete === true).length
 	},
 
+	getActiveCount() {
+		return this.getItemsCount() - this.getCompletedCount()
+	},
+
 	render() {
 		return (
 			<div className='panel-footer'>
@@ -27,6 +31,9 @@ export default React.createClass({
 					</li>
 					<li className=''>
 						<a href='#completed'>completed:&nbsp;<span className='badge'>{ this.getCompletedCount() }</span></a>
+					</li>
+					<li className=''>
+						<a href='#active'>active:&nbsp;<span className='badge'>{ this.getActiveCount() }</span></a>
 					</li>
 				</ul>
 			</div>

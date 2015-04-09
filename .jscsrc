@@ -1,6 +1,6 @@
 {
     "esnext": true,
-    "fileExtensions": [".js"],
+    "fileExtensions": [".js",".jsx"],
     "maximumLineLength": {
         "value": 120,
         "allowComments": true,

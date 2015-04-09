@@ -10,6 +10,11 @@ export default React.createClass({
 		};
 	},
 
+	componentDidMount() {
+		let { delay } = this.props
+		TweenMax.from(this.getDOMNode(), 0.5, { 'opacity': '0', ease: Quad.easeInOut, delay })
+	},
+
 	removeItem(e) {
 		TodoActions.removeItem(this.props.todo.id)
 	},
