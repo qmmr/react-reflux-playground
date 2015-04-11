@@ -24,15 +24,12 @@ export default React.createClass({
 	},
 
 	getTodoItems() {
-		const ANIMATION_DELAY = 0.25
-		var { tasks } = this.state
-
-		return tasks.map((todo, idx) => <TodoItem key={ todo.id } delay={ idx * ANIMATION_DELAY } todo={ todo } />)
+		return this.state.tasks.map((todo) => <TodoItem key={ todo.id } todo={ todo } />)
 	},
 
 	componentDidMount() {
 		let { children } = this.refs.todoList.getDOMNode()
-		TweenMax.staggerFrom(children, .5, { scale: 0, opacity: 0, ease: Elastic.easeOut.config(1, 0.75) }, 0.25)
+		window.TweenMax.staggerFrom(children, .5, { scale: 0, opacity: 0, ease: window.Elastic.easeOut.config(1, 0.75) }, 0.25)
 	},
 
 	render() {

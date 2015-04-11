@@ -4,6 +4,12 @@ import TodoActions from './TodoActions'
 
 export default React.createClass({
 
+	displayName: 'TodoItem',
+
+	propTypes: {
+		todo: React.PropTypes.string
+	},
+
 	getDefaultProps() {
 		return {
 			todo: {}
@@ -11,9 +17,7 @@ export default React.createClass({
 	},
 
 	componentDidMount() {
-		let { delay } = this.props
-		// TweenMax.from(this.getDOMNode(), 0.5, { 'opacity': '0', ease: Quad.easeInOut, delay })
-
+		// window.TweenMax.from(this.getDOMNode(), 0.5, { opacity: 0, ease: window.Quad.easeInOut })
 	},
 
 	removeItem() {
