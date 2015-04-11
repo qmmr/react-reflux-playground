@@ -8,7 +8,12 @@
 }
 
 .complete {
+    background-color: #eee;
     text-decoration: line-through;
+}
+
+button.close {
+    outline: none;
 }
 
 .todo-input-container {

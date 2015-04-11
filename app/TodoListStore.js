@@ -9,15 +9,15 @@ export default Reflux.createStore({
 
 	init() {
 		this.list = [
-			{ id: shortid.generate(), text: 'Buy milk', complete: false },
-			{ id: shortid.generate(), text: 'Wash the dishes', complete: true },
-			{ id: shortid.generate(), text: 'Find new place to rent', complete: true },
-			{ id: shortid.generate(), text: 'Learn more about Reflux', complete: false }
+			{ id: shortid.generate(), new: false, text: 'Buy milk', complete: false },
+			{ id: shortid.generate(), new: false, text: 'Wash the dishes', complete: true },
+			{ id: shortid.generate(), new: false, text: 'Find new place to rent', complete: true },
+			{ id: shortid.generate(), new: false, text: 'Learn more about Reflux', complete: false }
 		]
 	},
 
 	onAddItem(text) {
-		this.list.push({ id: shortid.generate(), text, complete: false })
+		this.list.push({ id: shortid.generate(), new: true, text, complete: false })
 		this.emitChange()
 	},
 

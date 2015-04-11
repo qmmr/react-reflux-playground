@@ -12,6 +12,8 @@ var RouteHandler = Router.RouteHandler
 
 export default React.createClass({
 
+	displayName: 'App',
+
 	mixins: [ Reflux.connect(todoListStore) ],
 
 	handleValueChange(e) {

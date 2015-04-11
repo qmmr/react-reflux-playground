@@ -10,7 +10,7 @@ module.exports = {
 		'./app/index'
 	],
 	output: {
-		path: path.join(__dirname + 'app'),
+		path: path.join(__dirname, 'app'),
 		filename: 'bundle.js',
 		publicPath: '/app/'
 	},
@@ -23,7 +23,8 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.js$|\.jsx$/, loaders: [ 'react-hot', 'babel' ], include: path.join(__dirname, 'app') }
+			{ test: /\.js$|\.jsx$/, loaders: [ 'react-hot', 'babel' ], include: path.join(__dirname, 'app') },
+			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000', include: path.join(__dirname, 'app') }
 		]
 	}
 }
