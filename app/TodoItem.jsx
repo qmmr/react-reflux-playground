@@ -7,19 +7,20 @@ export default React.createClass({
 	getDefaultProps() {
 		return {
 			todo: {}
-		};
+		}
 	},
 
 	componentDidMount() {
 		let { delay } = this.props
-		TweenMax.from(this.getDOMNode(), 0.5, { 'opacity': '0', ease: Quad.easeInOut, delay })
+		// TweenMax.from(this.getDOMNode(), 0.5, { 'opacity': '0', ease: Quad.easeInOut, delay })
+
 	},
 
-	removeItem(e) {
+	removeItem() {
 		TodoActions.removeItem(this.props.todo.id)
 	},
 
-	toggleComplete(e) {
+	toggleComplete() {
 		TodoActions.toggleCompleteItem(this.props.todo.id)
 	},
 

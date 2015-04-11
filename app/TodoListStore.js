@@ -10,7 +10,9 @@ export default Reflux.createStore({
 	init() {
 		this.list = [
 			{ id: shortid.generate(), text: 'Buy milk', complete: false },
-			{ id: shortid.generate(), text: 'Wash the dishes', complete: true }
+			{ id: shortid.generate(), text: 'Wash the dishes', complete: true },
+			{ id: shortid.generate(), text: 'Find new place to rent', complete: true },
+			{ id: shortid.generate(), text: 'Learn more about Reflux', complete: false }
 		]
 	},
 

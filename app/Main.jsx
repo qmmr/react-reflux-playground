@@ -30,6 +30,11 @@ export default React.createClass({
 		return tasks.map((todo, idx) => <TodoItem key={ todo.id } delay={ idx * ANIMATION_DELAY } todo={ todo } />)
 	},
 
+	componentDidMount() {
+		let { children } = this.refs.todoList.getDOMNode()
+		TweenMax.staggerFrom(children, .5, { scale: 0, opacity: 0, ease: Elastic.easeOut.config(1, 0.75) }, 0.25)
+	},
+
 	render() {
 		return (
 			<main className='panel panel-default'>
@@ -37,7 +42,7 @@ export default React.createClass({
 					<h3 className='panel-title'>Todo list:</h3>
 				</div>
 				<div className='panel-body'>
-					<ul className='todo-list list-group'>
+					<ul ref='todoList' className='todo-list list-group'>
 						{ this.getTodoItems() }
 					</ul>
 				</div>

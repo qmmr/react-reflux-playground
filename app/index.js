@@ -6,7 +6,6 @@ import Main from './Main.jsx'
 
 var Route = Router.Route
 var DefaultRoute = Router.DefaultRoute
-var RouteHandler = Router.RouteHandler
 
 var routes = (
 	<Route name='app' path='/' handler={ App }>
