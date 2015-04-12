@@ -50,7 +50,7 @@ export default React.createClass({
 
 	render() {
 		var { todo, todo: { complete } } = this.props
-		var todoClasses = classnames('list-group-item', { 'complete': complete })
+		var todoClasses = classnames('list-group-item', { complete })
 
 		return (
 			<li className={ todoClasses } data-id={ todo.id }>

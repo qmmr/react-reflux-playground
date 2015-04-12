@@ -5,6 +5,7 @@ import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
 
 import TodoItem from './TodoItem.jsx'
+import Footer from './Footer.jsx'
 
 export default React.createClass({
 
@@ -24,7 +25,7 @@ export default React.createClass({
 	},
 
 	getTodoItems() {
-		return this.state.tasks.map((todo) => <TodoItem key={ todo.id } todo={ todo } />)
+		return this.state.tasks.map(todo => <TodoItem key={ todo.id } todo={ todo } />)
 	},
 
 	componentDidMount() {
@@ -34,7 +35,7 @@ export default React.createClass({
 
 	render() {
 		return (
-			<main className='panel panel-default'>
+			<main className='panel panel-primary'>
 				<div className='panel-heading'>
 					<h3 className='panel-title'>Todo list:</h3>
 				</div>
@@ -43,6 +44,7 @@ export default React.createClass({
 						{ this.getTodoItems() }
 					</ul>
 				</div>
+				<Footer { ...this.state } />
 			</main>
 		)
 	}

@@ -5,7 +5,6 @@ import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
 
 import TodoItem from './TodoItem.jsx'
-import Footer from './Footer.jsx'
 
 import Router from 'react-router'
 var RouteHandler = Router.RouteHandler
@@ -47,8 +46,6 @@ export default React.createClass({
 					</div>
 
 					<RouteHandler { ...this.state } />
-
-					<Footer { ...this.state } />
 				</div>
 			</div>
 		)
