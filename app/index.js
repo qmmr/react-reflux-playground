@@ -4,6 +4,9 @@ import Router from 'react-router'
 import App from './App.jsx'
 import Main from './Main.jsx'
 
+require('./css/bootstrap-lumen.css')
+require('./css/main.css')
+
 var Route = Router.Route
 var DefaultRoute = Router.DefaultRoute
 

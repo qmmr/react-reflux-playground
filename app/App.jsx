@@ -37,6 +37,10 @@ export default React.createClass({
 		return (
 			<div className='row'>
 				<div className='col-sm-8 col-sm-offset-2'>
+					<div className='intro'>
+						<div className='webpack-logo'></div>
+						<h3>Todo App build with React.js and Reflux</h3>
+					</div>
 					<div className='todo-input-container input-group'>
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
 						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus onKeyUp={ this.handleValueChange } className='form-control' />
