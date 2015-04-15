@@ -5,7 +5,7 @@ import App from './App.jsx'
 import Main from './Main.jsx'
 
 require('./css/bootstrap-lumen.css')
-require('./css/main.css')
+require('./css/main.styl')
 
 var Route = Router.Route
 var DefaultRoute = Router.DefaultRoute

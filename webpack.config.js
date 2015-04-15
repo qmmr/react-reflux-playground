@@ -25,6 +25,7 @@ module.exports = {
 		loaders: [
 			{ test: /\.js$|\.jsx$/, loaders: [ 'react-hot', 'babel' ], include: path.join(__dirname, 'app') },
 			{ test: /\.css$/, loader: 'style!css' },
+			{ test: /\.styl$/, loader: 'style!css!stylus' },
 			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=100000' }
 		]
 	}
