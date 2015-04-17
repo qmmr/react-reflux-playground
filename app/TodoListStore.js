@@ -21,8 +21,17 @@ export default Reflux.createStore({
 		this.emitChange()
 	},
 
+	onUpdateItem({ id, text }) {
+		this.list.forEach(todo => {
+			if (todo.id === id) {
+				todo.text = text
+			}
+		})
+		this.emitChange()
+	},
+
 	onRemoveItem(id) {
-		this.list = this.list.filter((todo) => todo.id !== id)
+		this.list = this.filter(todo => todo.id !== id)
 		this.emitChange()
 	},
 
@@ -42,8 +51,6 @@ export default Reflux.createStore({
 	},
 
 	getInitialState() {
-		// this.list = []
-
 		return { tasks: this.list }
 	}
 

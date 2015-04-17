@@ -1,12 +1,11 @@
 import React from 'react'
 import Reflux from 'reflux'
+import Router from 'react-router'
 
 import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
-
 import TodoItem from './TodoItem.jsx'
 
-import Router from 'react-router'
 var RouteHandler = Router.RouteHandler
 
 export default React.createClass({
@@ -16,20 +15,18 @@ export default React.createClass({
 	mixins: [ Reflux.connect(todoListStore) ],
 
 	handleValueChange(e) {
-		var text = e.target.value
-		// console.log('Marcin :: todo.text', text)
-		if (e.which === 13 && text) { // hit enter
-			TodoActions.addItem(text)
+		let { which, target: { value } } = e
+
+		if (which === 13 && value) { // hit enter
+			TodoActions.addItem(value)
 			e.target.value = ''
-		} else if (e.which === 27) { // hit escape
+		} else if (which === 27) { // hit escape does not work on Chrome
 			e.target.value = ''
 		}
 	},
 
 	getTodoItems() {
-		var { tasks } = this.state
-
-		return tasks.map((todo) => <TodoItem key={ todo.id } todo={ todo } />)
+		return this.state.tasks.map(todo => <TodoItem key={ todo.id } todo={ todo } />)
 	},
 
 	render() {

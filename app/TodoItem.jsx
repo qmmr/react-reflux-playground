@@ -17,27 +17,33 @@ export default React.createClass({
 		todo: React.PropTypes.object
 	},
 
+	getInitialState() {
+		return { todo: {} }
+	},
+
 	getDefaultProps() {
-		return {
-			todo: {}
-		}
+		return { todo: {} }
+	},
+
+	componentWillMount() {
+		this.setState({ todo: this.props.todo })
 	},
 
 	componentDidMount() {
-		if (this.props.todo.new) {
+		if (this.state.todo.new) {
 			window.TweenMax.from(this.getDOMNode(), .5, todoAnimations.ENTER, .25)
-			this.props.todo.new = false
+			this.state.todo.new = false
 		}
 	},
 
 	removeItem() {
-		todoAnimations.OUT.onComplete = () => TodoActions.removeItem(this.props.todo.id)
+		todoAnimations.OUT.onComplete = () => TodoActions.removeItem(this.state.todo.id)
 
 		window.TweenMax.to(this.getDOMNode(), .25, todoAnimations.OUT, .25)
 	},
 
 	toggleComplete() {
-		let { id, complete } = this.props.todo
+		let { id, complete } = this.state.todo
 
 		if (complete) {
 			todoAnimations.UNCOMPLETED.onComplete = () => TodoActions.toggleCompleteItem(id)
@@ -48,22 +54,52 @@ export default React.createClass({
 		}
 	},
 
+	updateEditInput(e) {
+		let { todo } = this.state
+		todo.text = e.currentTarget.value
+		this.setState({ todo })
+		if (e.which === 13) { //enter
+			this._saveAndCloseEdit()
+		}
+	},
+
+	editItem() {
+		this.refs.todoItem.getDOMNode().classList.remove('edit')
+		TodoActions.updateItem(this.state.todo)
+	},
+
+	doubleClickHandler(e) {
+		e.currentTarget.classList.add('edit')
+	},
+
 	render() {
-		var { todo, todo: { complete } } = this.props
-		var todoClasses = classnames('list-group-item', { complete })
+		var { todo: { id, text, complete } } = this.state
+		var todoClasses = classnames('list-group-item', 'todo-item-container', { complete })
 
 		return (
-			<li className={ todoClasses } data-id={ todo.id }>
-				<div className='checkbox'>
-					<label>
-						<input type='checkbox' onChange={ this.toggleComplete } checked={ todo.complete } value='todoItem' />
-					</label>
+			<li ref='todoItem' className={ todoClasses } data-id={ id } onDoubleClick={ this.doubleClickHandler }>
+				<div className='todo-item'>
+					<div className='checkbox'>
+						<label>
+							<input type='checkbox' onChange={ this.toggleComplete } checked={ complete } value='todoItem' />
+						</label>
+					</div>
+					<span className='text'>{ text }</span>
+					<button className='btn-xs close' onClick={ this.removeItem }>
+						<span className=''>&times;</span>
+					</button>
 				</div>
-				{ todo.text }
-				<button className='btn-xs close' onClick={ this.removeItem }>
-					<span className=''>&times;</span>
-				</button>
+				<div className='edit-todo-item input-group'>
+					<input type='text' className='form-control' onKeyUp={ this.updateEditInput } defaultValue={ text }/>
+					<span className='input-group-btn'>
+						<button className='btn btn-default' type='button' onClick={ this.editItem }>Save</button>
+					</span>
+				</div>
 			</li>
 		)
+	},
+
+	_saveAndCloseEdit() {
+		console.log('Save and close edit', this.state.todo)
 	}
 })

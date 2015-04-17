@@ -51,17 +51,24 @@ button.close, button.close:hover
     .edit-todo-item
         display none
     &.edit
+        border none
+        padding 0
         .todo-item
             display none
         .edit-todo-item
-            display block
+            display table
 
-.nav > li > a.active,
-.nav > li > a.active:hover,
-.nav > li > a.active:focus
-    color #ffffff
-    background-color #158cba
+.edit-todo-item
+    .form-control
+        border-top none
 
-.nav > li > a.active > .badge
-    color #158cba
-    background-color #ffffff
+.nav
+    > li
+        > a.active,
+        > a.active:hover,
+        > a.active:focus
+            color #ffffff
+            background-color #158cba
+        > a.active > .badge
+            color #158cba
+            background-color #ffffff
