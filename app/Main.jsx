@@ -1,8 +1,7 @@
 import React from 'react'
-import Reflux from 'reflux'
+import Router from 'react-router'
 
 import TodoActions from './TodoActions'
-import todoListStore from './TodoListStore'
 
 import TodoItem from './TodoItem.jsx'
 import Footer from './Footer.jsx'
@@ -11,7 +10,11 @@ export default React.createClass({
 
 	displayName: 'Main',
 
-	mixins: [ Reflux.connect(todoListStore) ],
+	propTypes: {
+		tasks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+	},
+
+	mixins: [ Router.State ],
 
 	handleValueChange(e) {
 		var text = e.target.value
@@ -25,7 +28,7 @@ export default React.createClass({
 	},
 
 	getTodoItems() {
-		return this.state.tasks.map(todo => <TodoItem key={ todo.id } todo={ todo } />)
+		return this._filterTasks().map(todo => <TodoItem key={ todo.id } todo={ todo } />)
 	},
 
 	componentDidMount() {
@@ -44,8 +47,28 @@ export default React.createClass({
 						{ this.getTodoItems() }
 					</ul>
 				</div>
-				<Footer { ...this.state } />
+				<Footer { ...this.props } />
 			</main>
 		)
+	},
+
+	_filterTasks() {
+		var path = this.context.router.getCurrentPath()
+		var tasks
+
+		switch (path) {
+			case '/complete':
+				tasks = this.props.tasks.filter(task => task.complete === true)
+				break
+			case '/active':
+				tasks = this.props.tasks.filter(task => task.complete === false)
+				break
+			default:
+				tasks = this.props.tasks
+				break
+		}
+
+		return tasks
 	}
+
 })

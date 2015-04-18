@@ -7,6 +7,10 @@ export default React.createClass({
 
 	displayName: 'TodoAppFooter',
 
+	propTypes: {
+		tasks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+	},
+
 	getDefaultProps() {
 		return {
 			tasks: []
@@ -33,7 +37,7 @@ export default React.createClass({
 						<Link activeClassName='active' to='all'>All:&nbsp;<span className='badge'>{ this.getItemsCount() }</span></Link>
 					</li>
 					<li className=''>
-						<Link activeClassName='active' to='completed'>Completed:&nbsp;<span className='badge'>{ this.getCompletedCount() }</span></Link>
+						<Link activeClassName='active' to='complete'>Completed:&nbsp;<span className='badge'>{ this.getCompletedCount() }</span></Link>
 					</li>
 					<li className=''>
 						<Link activeClassName='active' to='active'>Active:&nbsp;<span className='badge'>{ this.getActiveCount() }</span></Link>

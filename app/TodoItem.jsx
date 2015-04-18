@@ -59,7 +59,7 @@ export default React.createClass({
 		todo.text = e.currentTarget.value
 		this.setState({ todo })
 		if (e.which === 13) { //enter
-			this._saveAndCloseEdit()
+			this.editItem()
 		}
 	},
 
@@ -90,16 +90,12 @@ export default React.createClass({
 					</button>
 				</div>
 				<div className='edit-todo-item input-group'>
-					<input type='text' className='form-control' onKeyUp={ this.updateEditInput } defaultValue={ text }/>
+					<input type='text' className='form-control' autoFocus onKeyUp={ this.updateEditInput } defaultValue={ text }/>
 					<span className='input-group-btn'>
 						<button className='btn btn-default' type='button' onClick={ this.editItem }>Save</button>
 					</span>
 				</div>
 			</li>
 		)
-	},
-
-	_saveAndCloseEdit() {
-		console.log('Save and close edit', this.state.todo)
 	}
 })

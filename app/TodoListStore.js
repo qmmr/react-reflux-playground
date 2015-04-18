@@ -31,7 +31,7 @@ export default Reflux.createStore({
 	},
 
 	onRemoveItem(id) {
-		this.list = this.filter(todo => todo.id !== id)
+		this.list = this.list.filter(todo => todo.id !== id)
 		this.emitChange()
 	},
 

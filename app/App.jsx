@@ -4,9 +4,6 @@ import Router from 'react-router'
 
 import TodoActions from './TodoActions'
 import todoListStore from './TodoListStore'
-import TodoItem from './TodoItem.jsx'
-
-var RouteHandler = Router.RouteHandler
 
 export default React.createClass({
 
@@ -25,10 +22,6 @@ export default React.createClass({
 		}
 	},
 
-	getTodoItems() {
-		return this.state.tasks.map(todo => <TodoItem key={ todo.id } todo={ todo } />)
-	},
-
 	render() {
 		return (
 			<div className='row'>
@@ -39,10 +32,11 @@ export default React.createClass({
 					</div>
 					<div className='todo-input-container input-group'>
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
-						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus onKeyUp={ this.handleValueChange } className='form-control' />
+						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus
+							onKeyUp={ this.handleValueChange } className='form-control' />
 					</div>
 
-					<RouteHandler { ...this.state } />
+					<Router.RouteHandler { ...this.state } />
 				</div>
 			</div>
 		)
