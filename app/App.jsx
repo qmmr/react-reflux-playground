@@ -30,17 +30,10 @@ export default React.createClass({
 						<div className='intro__logo'></div>
 						<h3>Todo App build with React.js and Reflux</h3>
 					</div>
-<<<<<<< HEAD
-					<div className='todo-input-container input-group'>
-						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
-						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus
-							onKeyUp={ this.handleValueChange } className='form-control' />
-=======
 					<div className='input-group new-item'>
 						<span className='input-group-addon'>I need to:</span>
 						<input className='form-control' ref='newItem' type='text' autoFocus
 								placeholder='do something amazing today!' onKeyUp={ this.handleValueChange } />
->>>>>>> a07f9a3... Refactoring names
 					</div>
 
 					<Router.RouteHandler { ...this.state } />

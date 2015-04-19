@@ -89,13 +89,8 @@ export default React.createClass({
 						<span className=''>&times;</span>
 					</button>
 				</div>
-<<<<<<< HEAD
-				<div className='edit-todo-item input-group'>
-					<input type='text' className='form-control' autoFocus onKeyUp={ this.updateEditInput } defaultValue={ text }/>
-=======
 				<div className='item__edit input-group'>
 					<input type='text' className='form-control' onKeyUp={ this.updateEditInput } defaultValue={ text }/>
->>>>>>> cd9f7b2... Add postcss with cssnext and other plugins, disable stylus
 					<span className='input-group-btn'>
 						<button className='btn btn-default' type='button' onClick={ this.editItem }>Save</button>
 					</span>
