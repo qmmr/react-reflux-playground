@@ -2,20 +2,20 @@ import React from 'react'
 import Reflux from 'reflux'
 import Router from 'react-router'
 
-import TodoActions from './TodoActions'
-import todoListStore from './TodoListStore'
+import Actions from './Actions'
+import Store from './Store'
 
 export default React.createClass({
 
 	displayName: 'App',
 
-	mixins: [ Reflux.connect(todoListStore) ],
+	mixins: [ Reflux.connect(Store) ],
 
 	handleValueChange(e) {
 		let { which, target: { value } } = e
 
 		if (which === 13 && value) { // hit enter
-			TodoActions.addItem(value)
+			Actions.addItem(value)
 			e.target.value = ''
 		} else if (which === 27) { // hit escape does not work on Chrome
 			e.target.value = ''
@@ -27,13 +27,20 @@ export default React.createClass({
 			<div className='row'>
 				<div className='col-sm-8 col-sm-offset-2'>
 					<div className='intro'>
-						<div className='webpack-logo'></div>
+						<div className='intro__logo'></div>
 						<h3>Todo App build with React.js and Reflux</h3>
 					</div>
+<<<<<<< HEAD
 					<div className='todo-input-container input-group'>
 						<span className='input-group-addon' id='basic-addon2'>I need to:</span>
 						<input ref='todo' type='text' placeholder='create an awesome todo task...' autoFocus
 							onKeyUp={ this.handleValueChange } className='form-control' />
+=======
+					<div className='input-group new-item'>
+						<span className='input-group-addon'>I need to:</span>
+						<input className='form-control' ref='newItem' type='text' autoFocus
+								placeholder='do something amazing today!' onKeyUp={ this.handleValueChange } />
+>>>>>>> a07f9a3... Refactoring names
 					</div>
 
 					<Router.RouteHandler { ...this.state } />

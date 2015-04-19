@@ -1,8 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
-import TodoActions from './TodoActions'
+import Actions from './Actions'
 
-var todoAnimations = {
+var taskAnimations = {
 	ENTER: { scale: 0, opacity: 0, ease: window.Elastic.easeOut.config(1, 0.75) },
 	OUT: { scale: 0, opacity: 0, ease: window.Sine.easeIn },
 	COMPLETED: { backgroundColor: '#eee', ease: window.Sine.easeIn },
@@ -11,53 +11,53 @@ var todoAnimations = {
 
 export default React.createClass({
 
-	displayName: 'TodoItem',
+	displayName: 'Item',
 
 	propTypes: {
-		todo: React.PropTypes.object
+		task: React.PropTypes.object
 	},
 
 	getInitialState() {
-		return { todo: {} }
+		return { task: {} }
 	},
 
 	getDefaultProps() {
-		return { todo: {} }
+		return { task: {} }
 	},
 
 	componentWillMount() {
-		this.setState({ todo: this.props.todo })
+		this.setState({ task: this.props.task })
 	},
 
 	componentDidMount() {
-		if (this.state.todo.new) {
-			window.TweenMax.from(this.getDOMNode(), .5, todoAnimations.ENTER, .25)
-			this.state.todo.new = false
+		if (this.state.task.new) {
+			window.TweenMax.from(this.getDOMNode(), .5, taskAnimations.ENTER, .25)
+			this.state.task.new = false
 		}
 	},
 
 	removeItem() {
-		todoAnimations.OUT.onComplete = () => TodoActions.removeItem(this.state.todo.id)
+		taskAnimations.OUT.onComplete = () => Actions.removeItem(this.state.task.id)
 
-		window.TweenMax.to(this.getDOMNode(), .25, todoAnimations.OUT, .25)
+		window.TweenMax.to(this.getDOMNode(), .25, taskAnimations.OUT, .25)
 	},
 
 	toggleComplete() {
-		let { id, complete } = this.state.todo
+		let { id, complete } = this.state.task
 
 		if (complete) {
-			todoAnimations.UNCOMPLETED.onComplete = () => TodoActions.toggleCompleteItem(id)
-			window.TweenMax.to(this.getDOMNode(), .15, todoAnimations.UNCOMPLETED)
+			taskAnimations.UNCOMPLETED.onComplete = () => Actions.toggleCompleteItem(id)
+			window.TweenMax.to(this.getDOMNode(), .15, taskAnimations.UNCOMPLETED)
 		} else {
-			todoAnimations.COMPLETED.onComplete = () => TodoActions.toggleCompleteItem(id)
-			window.TweenMax.to(this.getDOMNode(), .15, todoAnimations.COMPLETED)
+			taskAnimations.COMPLETED.onComplete = () => Actions.toggleCompleteItem(id)
+			window.TweenMax.to(this.getDOMNode(), .15, taskAnimations.COMPLETED)
 		}
 	},
 
 	updateEditInput(e) {
-		let { todo } = this.state
-		todo.text = e.currentTarget.value
-		this.setState({ todo })
+		let { task } = this.state
+		task.text = e.currentTarget.value
+		this.setState({ task })
 		if (e.which === 13) { //enter
 			this.editItem()
 		}
@@ -65,7 +65,7 @@ export default React.createClass({
 
 	editItem() {
 		this.refs.todoItem.getDOMNode().classList.remove('edit')
-		TodoActions.updateItem(this.state.todo)
+		Actions.updateItem(this.state.task)
 	},
 
 	doubleClickHandler(e) {
@@ -73,7 +73,7 @@ export default React.createClass({
 	},
 
 	render() {
-		var { todo: { id, text, complete } } = this.state
+		var { task: { id, text, complete } } = this.state
 		var todoClasses = classnames('list-group-item', 'todo-item-container', { complete })
 
 		return (
@@ -98,4 +98,5 @@ export default React.createClass({
 			</li>
 		)
 	}
+
 })

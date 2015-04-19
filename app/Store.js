@@ -1,11 +1,11 @@
 import Reflux from 'reflux'
 import shortid from 'shortid'
 
-import TodoActions from './TodoActions'
+import Actions from './Actions'
 
 export default Reflux.createStore({
 
-	listenables: TodoActions,
+	listenables: Actions,
 
 	init() {
 		this.list = [

@@ -1,9 +1,9 @@
 import React from 'react'
 import Router from 'react-router'
 
-import TodoActions from './TodoActions'
+import Actions from './Actions'
 
-import TodoItem from './TodoItem.jsx'
+import Item from './Item.jsx'
 import Footer from './Footer.jsx'
 
 export default React.createClass({
@@ -18,21 +18,21 @@ export default React.createClass({
 
 	handleValueChange(e) {
 		var text = e.target.value
-		// console.log('Marcin :: todo.text', text)
+
 		if (e.which === 13 && text) { // hit enter
-			TodoActions.addItem(text)
+			Actions.addItem(text)
 			e.target.value = ''
 		} else if (e.which === 27) { // hit escape
 			e.target.value = ''
 		}
 	},
 
-	getTodoItems() {
-		return this._filterTasks().map(todo => <TodoItem key={ todo.id } todo={ todo } />)
+	getItems() {
+		return this._filterTasks().map(task => <Item key={ task.id } task={ task } />)
 	},
 
 	componentDidMount() {
-		let { children } = this.refs.todoList.getDOMNode()
+		let { children } = this.refs.list.getDOMNode()
 		window.TweenMax.staggerFrom(children, .5, { scale: 0, opacity: 0, ease: window.Elastic.easeOut.config(1, 0.75) }, 0.25)
 	},
 
@@ -40,11 +40,11 @@ export default React.createClass({
 		return (
 			<main className='panel panel-primary'>
 				<div className='panel-heading'>
-					<h3 className='panel-title'>Todo list:</h3>
+					<h3 className='panel-title'>Tasks:</h3>
 				</div>
 				<div className='panel-body'>
-					<ul ref='todoList' className='todo-list list-group'>
-						{ this.getTodoItems() }
+					<ul ref='list' className='list-group tasks-list'>
+						{ this.getItems() }
 					</ul>
 				</div>
 				<Footer { ...this.props } />
