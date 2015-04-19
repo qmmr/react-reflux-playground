@@ -1,6 +1,11 @@
 var config = require('./config')
 var path = require('path')
 var webpack = require('webpack')
+var autoprefixer = require('autoprefixer-core')
+var cssnext = require('cssnext')
+var csswring = require('csswring')
+var nested = require('postcss-nested')
+var discardComments = require('postcss-discard-comments')
 
 module.exports = {
 	devtool: 'eval-source-map',
@@ -24,9 +29,10 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.js$|\.jsx$/, loaders: [ 'react-hot', 'babel' ], include: path.join(__dirname, 'app') },
-			{ test: /\.css$/, loader: 'style!css' },
-			{ test: /\.styl$/, loader: 'style!css!stylus' },
+			// { test: /\.css$/, loader: 'style!css' },
+			{ test: /\.css$/, loader: 'style!css!cssnext!postcss' },
 			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=100000' }
 		]
-	}
+	},
+	postcss: [ nested, autoprefixer, discardComments ] // csswring
 }

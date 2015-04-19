@@ -64,21 +64,21 @@ export default React.createClass({
 	},
 
 	editItem() {
-		this.refs.todoItem.getDOMNode().classList.remove('edit')
+		this.refs.todoItem.getDOMNode().classList.remove('item--edit')
 		Actions.updateItem(this.state.task)
 	},
 
 	doubleClickHandler(e) {
-		e.currentTarget.classList.add('edit')
+		e.currentTarget.classList.add('item--edit')
 	},
 
 	render() {
 		var { task: { id, text, complete } } = this.state
-		var todoClasses = classnames('list-group-item', 'todo-item-container', { complete })
+		var todoClasses = classnames('list-group-item', 'item', { complete })
 
 		return (
 			<li ref='todoItem' className={ todoClasses } data-id={ id } onDoubleClick={ this.doubleClickHandler }>
-				<div className='todo-item'>
+				<div className='item__view'>
 					<div className='checkbox'>
 						<label>
 							<input type='checkbox' onChange={ this.toggleComplete } checked={ complete } value='todoItem' />
@@ -89,8 +89,13 @@ export default React.createClass({
 						<span className=''>&times;</span>
 					</button>
 				</div>
+<<<<<<< HEAD
 				<div className='edit-todo-item input-group'>
 					<input type='text' className='form-control' autoFocus onKeyUp={ this.updateEditInput } defaultValue={ text }/>
+=======
+				<div className='item__edit input-group'>
+					<input type='text' className='form-control' onKeyUp={ this.updateEditInput } defaultValue={ text }/>
+>>>>>>> cd9f7b2... Add postcss with cssnext and other plugins, disable stylus
 					<span className='input-group-btn'>
 						<button className='btn btn-default' type='button' onClick={ this.editItem }>Save</button>
 					</span>
